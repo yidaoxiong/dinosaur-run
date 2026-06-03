@@ -1,0 +1,237 @@
+:root {
+  --bg: #f7f7f7;
+  --ink: #222222;
+  --muted: #686868;
+  --line: #d8d8d8;
+  --panel: rgba(255, 255, 255, 0.88);
+  --danger: #d94b37;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    var(--bg);
+  background-size: 32px 32px;
+  font-family: "Avenir Next", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+.game-shell {
+  width: min(1180px, calc(100vw - 28px));
+  margin: 14px auto;
+  display: grid;
+  gap: 14px;
+}
+
+.hud-panel {
+  min-height: 118px;
+  padding: 20px 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: center;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.brand-block {
+  display: grid;
+  gap: 8px;
+}
+
+.eyebrow,
+.overlay-kicker,
+.meter-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1;
+}
+
+.subcopy {
+  max-width: 680px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.meters {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.meter-card {
+  width: 104px;
+  min-height: 78px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+  justify-items: center;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.meter-card strong {
+  font-size: 27px;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+
+.meter-card span:last-child {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.arena-panel {
+  position: relative;
+  min-height: min(70vh, 720px);
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: #fff;
+  touch-action: none;
+}
+
+#gameCanvas {
+  width: 100%;
+  height: min(70vh, 720px);
+  display: block;
+  touch-action: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.58);
+  transition: opacity 0.18s ease;
+}
+
+.overlay-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlay-card {
+  width: min(430px, calc(100% - 32px));
+  padding: 22px;
+  display: grid;
+  gap: 12px;
+  text-align: center;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.16);
+}
+
+.overlay-card h2 {
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.overlay-card p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.corner-status {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.corner-status span {
+  padding: 8px 11px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ink);
+  font-size: 13px;
+}
+
+@media (max-width: 860px) {
+  body {
+    overflow: auto;
+  }
+
+  .game-shell {
+    width: min(100vw - 18px, 100%);
+    margin: 9px auto 18px;
+  }
+
+  .hud-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .meters {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .meter-card {
+    width: 31%;
+  }
+
+  #gameCanvas {
+    height: min(62vh, 620px);
+  }
+}
+
+@media (max-width: 560px) {
+  .hud-panel {
+    padding: 16px;
+  }
+
+  .subcopy,
+  .overlay-card p,
+  .corner-status span {
+    font-size: 13px;
+  }
+
+  .meter-card strong {
+    font-size: 22px;
+  }
+
+  .corner-status {
+    flex-direction: column;
+    align-items: flex-start;
+    right: auto;
+  }
+}
