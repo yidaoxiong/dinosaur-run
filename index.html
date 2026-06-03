@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#f7f7f7">
+  <title>霸王龙跑酷</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="hud-panel">
+      <div class="brand-block">
+        <p class="eyebrow">Dino Runner</p>
+        <h1>霸王龙跑酷</h1>
+        <p class="subcopy">空格开始或重开，J 跳跃，S 蹲下，K 加速。场景会自动在沙漠、城市、海面和空中之间切换。</p>
+      </div>
+
+      <div class="meters" aria-label="游戏数据">
+        <section class="meter-card">
+          <span class="meter-label">当前</span>
+          <strong id="currentDistance">0000</strong>
+          <span>m</span>
+        </section>
+        <section class="meter-card">
+          <span class="meter-label">最高</span>
+          <strong id="bestDistance">0000</strong>
+          <span>m</span>
+        </section>
+        <section class="meter-card">
+          <span class="meter-label">速度</span>
+          <strong id="speedValue">000</strong>
+          <span>km/h</span>
+        </section>
+      </div>
+    </header>
+
+    <section class="arena-panel">
+      <canvas id="gameCanvas" aria-label="霸王龙跑酷游戏画布"></canvas>
+
+      <div class="overlay overlay-visible" id="startOverlay">
+        <div class="overlay-card">
+          <p class="overlay-kicker">Ready</p>
+          <h2>按空格开始跑酷</h2>
+          <p>地面躲避仙人掌和飞鸟；海上在船之间跳跃并划桨越过鲸；空中驾驶直升机升降躲避障碍。</p>
+        </div>
+      </div>
+
+      <div class="overlay" id="gameOverOverlay">
+        <div class="overlay-card">
+          <p class="overlay-kicker">Game Over</p>
+          <h2>本局结束</h2>
+          <p id="finalDistanceText">本局前进 0 m</p>
+          <p>按空格重新开始。</p>
+        </div>
+      </div>
+
+      <div class="corner-status">
+        <span id="sceneBadge">沙漠 / 白天</span>
+        <span id="controlBadge">J 跳跃 · S 蹲下 · K 加速</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
